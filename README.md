@@ -2,6 +2,7 @@
 
 Android application to handle time during chess games
 
+![alt tag](https://github.com/ggouzi/Android-ChessTimer/blob/master/capture.png)
 
 You can choose:
   - The amount of time
