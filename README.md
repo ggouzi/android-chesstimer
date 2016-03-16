@@ -13,7 +13,7 @@ Designed to help players:
   - Screen is devided in two symetric parts
   - You see your own timer
   - Challenger's timer is also visible to you (you don't have to turn your head)
-  - You see the number of movment you've done sinci he beginning of the game
+  - You see the number of movement you've done since the beginning of the game
 
 Supported Languages:
   English (En)
