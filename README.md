@@ -15,6 +15,7 @@ Designed to help players:
   - You see your own timer
   - Challenger's timer is also visible to you (you don't have to turn your head)
   - You see the number of movement you've done since the beginning of the game
+  - The black triangle on the middle of the screen indicated which player has to move
   - Pause buttons are small and the timer clicking zone is big enough to avoid mistakes while tapping the screen
 
 Supported Languages:
