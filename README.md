@@ -19,7 +19,7 @@ Designed to help players:
   - Pause buttons are small and the timer clicking zone is big enough to avoid mistakes while tapping the screen
 
 Supported Languages:
-  English (En)
-  French (Fr)
-  Spanish(Es) not completed yet
-  Italian (It)
+  - English (En)
+  - French (Fr)
+  - Spanish(Es) not completed yet
+  - Italian (It) not completed yet
