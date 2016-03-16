@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="couleurFond">#333333</color>
+    <color name="couleurMainTime">#FFFFFF</color>
+    <color name="couleurSecondTime">#FF4081</color>
+    <color name="couleurBordure">#5544DD</color>
+
+
+    <color name="couleurIncrement">#00DD00</color>
+    <color name="couleurBlancs">#FFFFFF</color>
+    <color name="couleurNoirs">#000000</color>
+</resources>

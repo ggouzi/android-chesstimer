@@ -1,0 +1,210 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/fond3">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="50"
+        android:id="@+id/layoutTemps1">
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="40"
+            android:layout_gravity="center"
+            android:gravity="center">
+
+            <TextView
+                android:id="@+id/temps2bis"
+                android:layout_weight="10"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:rotation="180"
+                android:gravity="right"
+                android:textColor="@color/couleurNoirs"
+                android:textSize="30sp"
+                android:text="00:00:00" />
+
+            <TextView
+                android:id="@+id/nbMove1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:rotation="180"
+                android:gravity="left"
+                android:layout_weight="10"
+                android:textColor="@color/couleurBlancs"
+                android:textSize="25sp"
+                android:text="0 move" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="10"
+            android:background="@drawable/bordure_chrono_blanc"
+            android:id="@+id/layoutTemps3">
+
+            <TextView
+                android:id="@+id/nomJoueur1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:layout_weight="20"
+                android:gravity="center"
+                android:textColor="@color/couleurBlancs"
+                android:textSize="20sp"
+                android:rotation="180"
+                android:textStyle="bold"
+                android:text="@string/defaultPlayerName1" />
+
+            <TextView
+                android:id="@+id/temps1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:layout_weight="10"
+                android:rotation="180"
+                android:textColor="@color/couleurBlancs"
+                android:gravity="center"
+                android:textStyle="bold"
+                android:textSize="55sp"
+                android:text="00:00:00" />
+
+            <TextView
+                android:id="@+id/increment1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:layout_weight="20"
+                android:gravity="center"
+                android:visibility="invisible"
+                android:rotation="180"
+                android:textColor="@color/couleurIncrement"
+                android:textSize="25sp"
+                android:textStyle="bold"
+                android:text="+1" />
+
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/menu"
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center">
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/pause"
+            android:rotation="180"
+            android:id="@+id/pause1" />
+
+        <ImageView
+            android:id="@+id/tour"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:src="@drawable/up"/>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/pause"
+            android:id="@+id/pause2" />
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="50"
+        android:id="@+id/layoutTemps2">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="10"
+            android:background="@drawable/bordure_chrono_noir"
+            android:id="@+id/layoutTemps4">
+
+        <TextView
+            android:id="@+id/increment2"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_weight="20"
+            android:gravity="center"
+            android:visibility="invisible"
+            android:textColor="@color/couleurIncrement"
+            android:textSize="25sp"
+            android:textStyle="bold"
+            android:text="+1" />
+
+        <TextView
+            android:id="@+id/temps2"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_weight="10"
+            android:gravity="center"
+            android:textColor="@color/couleurNoirs"
+            android:textSize="55sp"
+            android:textStyle="bold"
+            android:text="00:00:00" />
+
+        <TextView
+            android:id="@+id/nomJoueur2"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_weight="20"
+            android:gravity="center"
+            android:textColor="@color/couleurNoirs"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:text="@string/defaultPlayerName1" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="30"
+            android:layout_gravity="center"
+            android:gravity="center">
+
+            <TextView
+                android:id="@+id/temps1bis"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/couleurBlancs"
+                android:textSize="30sp"
+                android:layout_weight="10"
+                android:gravity="left"
+                android:text="00:00:00" />
+
+            <TextView
+                android:id="@+id/nbMove2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/couleurNoirs"
+                android:textSize="25sp"
+                android:gravity="right"
+                android:layout_weight="10"
+                android:text="0 move" />
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>
