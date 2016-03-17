@@ -9,7 +9,8 @@
         android:title="@string/action_settings"
         app:showAsAction="ifRoom"/>
 
-    <item android:id="@+id/action_replay"
+    <item android:id="@+id/action_replay1"
+        android:icon="@drawable/ic_menu_update"
         android:title="@string/replay"
         app:showAsAction="ifRoom"/>
 

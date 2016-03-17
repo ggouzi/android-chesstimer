@@ -21,10 +21,12 @@
     <string name="heWins">He wins</string>
     <string name="heLoses">He loses</string>
 
-    <string name="soundTurn">Beep on each turn</string>
-    <string name="soundFinal">Beep on finish</string>
+    <string name="soundTurn">Enable beep on each turn</string>
+    <string name="soundFinal">Enable beep on finish</string>
     <string name="vibration">Vibrate on finish</string>
 
+    <string name="namePlayer1">Name player 1</string>
+    <string name="namePlayer2">Name player 2</string>
 
     <string name="remainingTime">Remaining Time</string>
     <string name="nbMove">Number of moves</string>

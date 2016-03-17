@@ -8,7 +8,11 @@ import android.media.AudioManager;
 import android.media.ToneGenerator;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.os.Handler;
 import android.os.Vibrator;
+import android.util.AttributeSet;
+import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -188,16 +192,13 @@ public class MainActivity extends Activity{
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_settings:
-                if(!paused){
-                    mettreEnPause();
-                    paused=!paused;
-                }
-                /*Intent activitySettings = new Intent(MainActivity.this, Settings.class);
-                startActivity(activitySettings);*/
+                mettreEnPause();
+                Intent activitySettings = new Intent(MainActivity.this, Settings.class);
+                startActivity(activitySettings);
 
                 return true;
 
-            case R.id.action_replay:
+            case R.id.action_replay1:
                 rejouer();
                 return true;
 

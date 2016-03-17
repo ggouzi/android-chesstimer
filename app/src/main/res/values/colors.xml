@@ -9,4 +9,7 @@
     <color name="couleurIncrement">#00DD00</color>
     <color name="couleurBlancs">#FFFFFF</color>
     <color name="couleurNoirs">#000000</color>
+
+    <color name="couleurBackGroundMenu">#555555</color>
+
 </resources>

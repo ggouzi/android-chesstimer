@@ -1,25 +1,17 @@
 <resources>
-
-    <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">>
         <item name="android:actionMenuTextColor">#fff</item>
-        <item name="actionOverflowMenuStyle">@style/CMOptionsMenu</item>
     </style>
+    <!-- Base application theme. -->
 
-    <style name="AppTheme.NoActionBar" parent="Theme.AppCompat.Light.DarkActionBar">
-        <item name="android:windowActionBarOverlay">true</item>
-        <item name="android:actionBarStyle">@style/action_bar_theme</item>
-        <item name="android:actionMenuTextColor">#fff</item>
-        <item name="actionOverflowMenuStyle">@style/CMOptionsMenu</item>
-    </style>
+        <style name="CustomTheme" parent="android:Theme">
+            <item name="android:panelFullBackground">@drawable/menu_full_bg</item>
+            <item name="android:windowNoTitle">true</item>
+        </style>
 
-    <style name="CMOptionsMenu" parent="Widget.AppCompat.PopupMenu.Overflow">
-        <item name="android:popupBackground">#FF0000</item>
-    </style>
-
-    <style name="action_bar_theme" parent="@android:style/Widget.Holo.ActionBar">
-        <item name="android:background">#b3000000</item>
-    </style>
-
+        <!-- <drawable name="menu_bg">#DDDAAA</drawable> -->
+        <drawable name="menu_full_bg">@color/couleurBackGroundMenu</drawable>
 
 </resources>
+
+
