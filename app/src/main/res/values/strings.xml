@@ -25,4 +25,16 @@
     <string name="soundFinal">Beep on finish</string>
     <string name="vibration">Vibrate on finish</string>
 
+
+    <string name="remainingTime">Remaining Time</string>
+    <string name="nbMove">Number of moves</string>
+    <string name="black">Black</string>
+    <string name="white">White</string>
+    <string name="lost">loses</string>
+    <string name="won">wins</string>
+    <string name="endGame">The game is over</string>
+    <string name="whatToDo">Do you want to play again ?</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+
 </resources>

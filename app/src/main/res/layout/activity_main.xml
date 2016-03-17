@@ -112,7 +112,7 @@
             android:id="@+id/tour"
             android:layout_width="100dp"
             android:layout_height="100dp"
-            android:src="@drawable/up"/>
+            android:src="@drawable/down"/>
 
         <Button
             android:layout_width="wrap_content"

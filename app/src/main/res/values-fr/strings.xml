@@ -16,6 +16,16 @@
     <string name="soundTurn">Bip à la fin de chaque tour</string>
     <string name="time">Temps</string>
     <string name="vibration">Vibrer </string>
-    <string name="youLose">Vous avez perdu</string>
-    <string name="youWin">Vous avez gagné</string>
+    <string name="youLose">Perdu</string>
+    <string name="youWin">Gagné</string>
+    <string name="black">Noirs</string>
+    <string name="endGame">Partie terminée</string>
+    <string name="lost">perdent</string>
+    <string name="no">Non</string>
+    <string name="whatToDo">Voulez-vous rejouer ?</string>
+    <string name="white">Blancs</string>
+    <string name="won">gagnent</string>
+    <string name="yes">Oui</string>
+    <string name="nbMove">Nb déplacements</string>
+    <string name="remainingTime">Temps restant</string>
 </resources>

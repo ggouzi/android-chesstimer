@@ -16,4 +16,5 @@
     <string name="youLose"></string>
     <string name="time">Tiempo</string>
     <string name="vibration">Vibrar al fino</string>
+    <string name="no">No</string>
 </resources>

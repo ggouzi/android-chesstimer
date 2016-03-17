@@ -1,6 +1,8 @@
 package com.mailexample.premiere_appli;
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.media.AudioManager;
 import android.media.ToneGenerator;
@@ -17,6 +19,7 @@ import android.view.animation.AnimationSet;
 import android.view.animation.AnimationUtils;
 import android.view.animation.TranslateAnimation;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -60,6 +63,7 @@ public class MainActivity extends Activity{
     private final int BLANCS = 1;
     private int quiJoueApresPause = NOIRS;
     private int quiJoueAvantPause = BLANCS;
+    private int quiAPerdu = NOIRS; // By default
 
 
     @Override
@@ -231,23 +235,25 @@ public class MainActivity extends Activity{
     }
 
     public void mettreEnPause(){
-        setPauseText(getResources().getString(R.string.resume));
-        boutonTemps2.setEnabled(false);
-        boutonTemps1.setEnabled(false);
+        if(!paused && !premierTap){
+            setPauseText(getResources().getString(R.string.resume));
+            boutonTemps2.setEnabled(false);
+            boutonTemps1.setEnabled(false);
 
-        if(quiJoueAvantPause == NOIRS){
-            quiJoueApresPause = NOIRS;
+            if(quiJoueAvantPause == NOIRS){
+                quiJoueApresPause = NOIRS;
+            }
+
+            else if(quiJoueAvantPause == BLANCS){
+                quiJoueApresPause = BLANCS;
+            }
+
+            timeRemaining2 = countDownTimer2.getTimeRemaining();
+            countDownTimer2.cancel();
+
+            timeRemaining1 = countDownTimer1.getTimeRemaining();
+            countDownTimer1.cancel();
         }
-
-        else if(quiJoueAvantPause == BLANCS){
-            quiJoueApresPause = BLANCS;
-        }
-
-        timeRemaining2 = countDownTimer2.getTimeRemaining();
-        countDownTimer2.cancel();
-
-        timeRemaining1 = countDownTimer1.getTimeRemaining();
-        countDownTimer1.cancel();
     }
 
     public void rejouer(){
@@ -332,7 +338,7 @@ public class MainActivity extends Activity{
         countDownTimer1 = new MalibuCountDownTimer(startTime, interval, temps1, temps1bis);
         countDownTimer2 = new MalibuCountDownTimer(startTime, interval, temps2, temps2bis);
 
-        setPauseText(getResources().getString(R.string.resume));
+        setPauseText(getResources().getString(R.string.replay));
         terminated = true;
     }
 
@@ -351,6 +357,71 @@ public class MainActivity extends Activity{
         }
     }
 
+    public TextView getOtherTextView(TextView t) {
+        if (t.equals(temps1)) {
+            return temps2;
+        }
+        else{
+            return temps1;
+        }
+    }
+
+    public String whoLost(){
+        if(quiAPerdu==BLANCS){
+            return getResources().getString(R.string.white);
+        }
+        else{
+            return getResources().getString(R.string.black);
+        }
+    }
+
+    public void dialogueFinPartie(String s){
+        String title = getResources().getString(R.string.endGame)+" : ";
+        String message = "";
+        if(quiAPerdu==NOIRS){
+            title += getResources().getString(R.string.white);
+            long millis = ( timeRemaining1 % 1000)/10;
+            long second = ( timeRemaining1 / 1000) % 60;
+            long minute = ( timeRemaining1 / (1000 * 60)) % 60;
+            String time = String.format("%02d:%02d:%02d", minute, second, millis);
+            message +=  getResources().getString(R.string.black)+" :\n"+
+                    getResources().getString(R.string.remainingTime)+" : 00:00:00\n"+
+                    getResources().getString(R.string.nbMove)+" : "+nbMove2+"\n\n"+
+                    getResources().getString(R.string.white)+" : \n"+
+                    getResources().getString(R.string.remainingTime)+" "+time+"\n"+
+                    getResources().getString(R.string.nbMove)+" : "+nbMove1+"\n";
+        }
+        else{
+            title += getResources().getString(R.string.black);
+            long millis = ( timeRemaining2 % 1000)/10;
+            long second = ( timeRemaining2 / 1000) % 60;
+            long minute = ( timeRemaining2 / (1000 * 60)) % 60;
+            String time = String.format("%02d:%02d:%02d", minute, second, millis);
+            message +=  getResources().getString(R.string.white)+" :\n"+
+                    getResources().getString(R.string.remainingTime)+" : 00:00:00\n"+
+                    getResources().getString(R.string.nbMove)+" : "+nbMove1+"\n\n"+
+                    getResources().getString(R.string.black)+" : \n"+
+                    getResources().getString(R.string.remainingTime)+" "+time+"\n"+
+                    getResources().getString(R.string.nbMove)+" : "+nbMove2+"\n";
+        }
+        title += " "+getResources().getString(R.string.won);
+        message += "\n"+getResources().getString(R.string.whatToDo);
+
+
+        new AlertDialog.Builder(MainActivity.this)
+                .setTitle(title)
+                .setMessage(message)
+                .setNegativeButton(getResources().getString(R.string.no), null)
+                .setPositiveButton(getResources().getString(R.string.yes), new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        rejouer();
+                    }
+                })
+                .create()
+                .show();
+    }
+
     // CountDownTimer class
     public class MalibuCountDownTimer extends CountDownTimer {
 
@@ -366,6 +437,15 @@ public class MainActivity extends Activity{
         }
         @Override
         public void onFinish(){
+            if(textview.equals(temps1)){
+                quiAPerdu=BLANCS;
+            }
+            else{
+                quiAPerdu=NOIRS;
+            }
+
+
+            dialogueFinPartie( (String) getOtherTextView(textview).getText());
             afficherMessageFinPartie(textview);
 
             if(vibration){
