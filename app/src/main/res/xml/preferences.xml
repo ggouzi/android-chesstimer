@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <EditTextPreference android:title="@string/namePlayer1"
+        android:key="username"
+        android:summary="Please provide your username">
+    </EditTextPreference>
+
+    <EditTextPreference android:title="@string/namePlayer2"
+        android:key="username"
+        android:summary="Please provide your username">
+    </EditTextPreference>
+
+    <ListPreference
+        android:title="@string/time"
+        android:summary="5 sec"
+        android:key="downloadType"
+        android:defaultValue="1"
+        android:entries="@array/listTime"
+        android:entryValues="@array/listTime" />
+
+    <ListPreference
+        android:title="@string/increment"
+        android:summary="5 sec"
+        android:key="downloadType"
+        android:defaultValue="1"
+        android:entries="@array/listIncrement"
+        android:entryValues="@array/listIncrement" />
+
+    <CheckBoxPreference android:title="@string/soundTurn"
+        android:defaultValue="true"
+        android:summary="ion to check for latest versions."
+        android:key="applicationUpdates" />
+
+    <CheckBoxPreference android:title="@string/soundFinal"
+        android:defaultValue="true"
+        android:summary="ion to check for latest versions."
+        android:key="applicationUpdates" />
+
+    <CheckBoxPreference android:title="@string/vibration"
+        android:defaultValue="true"
+        android:summary="ion to check for latest versions."
+        android:key="applicationUpdates" />
+
+</PreferenceScreen>

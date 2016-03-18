@@ -8,25 +8,14 @@ import android.media.AudioManager;
 import android.media.ToneGenerator;
 import android.os.Bundle;
 import android.os.CountDownTimer;
-import android.os.Handler;
 import android.os.Vibrator;
-import android.util.AttributeSet;
-import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.animation.AlphaAnimation;
-import android.view.animation.Animation;
-import android.view.animation.AnimationSet;
 import android.view.animation.AnimationUtils;
-import android.view.animation.TranslateAnimation;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 public class MainActivity extends Activity{
 
@@ -45,15 +34,13 @@ public class MainActivity extends Activity{
     private int nbMove1 = 0;
     private int nbMove2 = 0;
 
-    private TextView move1, move2;
-
     private View boutonTemps1, boutonTemps2;
 
     private Button pause_resume1, pause_resume2;
     private boolean paused = false;
     private boolean terminated = false;
 
-    private TextView temps1, temps2, temps1bis, temps2bis, increment2, increment1, nomJoueur1, nomJoueur2;
+    private TextView temps1, temps2, temps1bis, temps2bis, increment2, increment1, nomJoueur1, nomJoueur2, move1, move2;
 
     private ImageView tour;
 
@@ -68,7 +55,6 @@ public class MainActivity extends Activity{
     private int quiJoueApresPause = NOIRS;
     private int quiJoueAvantPause = BLANCS;
     private int quiAPerdu = NOIRS; // By default
-
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -104,9 +90,60 @@ public class MainActivity extends Activity{
         countDownTimer1.displayTime(startTime);
         countDownTimer2.displayTime(startTime);
 
-        MAJCompteur(nbMove1, move1);
-        MAJCompteur(nbMove2, move2);
+        updateMoves(nbMove1, move1);
+        updateMoves(nbMove2, move2);
 
+        displayOrGone();
+
+        pause_resume1.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                pause();
+            }
+        });
+
+        pause_resume2.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                pause();
+            }
+        });
+
+        boutonTemps1.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                playSoundTurn();
+                if(!premierTap){
+                    nbMove1++;
+                    increment1.startAnimation(AnimationUtils.loadAnimation(MainActivity.this, R.anim.move_blancs));
+                    timeRemaining1 = countDownTimer1.addIncAndGetTime(increment);
+                    updateMoves(nbMove1, move1);
+                }
+                else if(premierTap){
+                    premierTap=!premierTap;
+                }
+
+                playBlack();
+            }
+        });
+
+        boutonTemps2.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                playSoundTurn();
+                if(!premierTap){
+                    nbMove2++;
+                    increment2.startAnimation(AnimationUtils.loadAnimation(MainActivity.this, R.anim.move_noirs));
+                    timeRemaining2 = countDownTimer2.addIncAndGetTime(increment);
+                    updateMoves(nbMove2, move2);
+                }
+
+                else if(premierTap){
+                    premierTap=!premierTap;
+                }
+
+                playWhite();
+            }
+        });
+    }
+
+    public void displayOrGone(){
         if(increment==0){
             increment1.setVisibility(View.GONE);
             increment2.setVisibility(View.GONE);
@@ -129,58 +166,13 @@ public class MainActivity extends Activity{
         else{
             nomJoueur2.setText(joueur2);
         }
-
-        pause_resume1.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                pause();
-            }
-        });
-
-        pause_resume2.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                pause();
-            }
-        });
-
-        boutonTemps1.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                jouerSon();
-                if(!premierTap){
-                    nbMove1++;
-                    increment1.startAnimation(AnimationUtils.loadAnimation(MainActivity.this, R.anim.move_blancs));
-                    timeRemaining1 = countDownTimer1.addIncAndGetTime(increment);
-                    MAJCompteur(nbMove1, move1);
-                }
-                else if(premierTap){
-                    premierTap=!premierTap;
-                }
-
-                jouerNoirs();
-            }
-        });
-
-        boutonTemps2.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                jouerSon();
-                if(!premierTap){
-                    nbMove2++;
-                    increment2.startAnimation(AnimationUtils.loadAnimation(MainActivity.this, R.anim.move_noirs));
-                    timeRemaining2 = countDownTimer2.addIncAndGetTime(increment);
-                    MAJCompteur(nbMove2, move2);
-                }
-
-                else if(premierTap){
-                    premierTap=!premierTap;
-                }
-
-                jouerBlancs();
-            }
-        });
     }
 
-    public void jouerSon(){
-        ToneGenerator toneG = new ToneGenerator(AudioManager.STREAM_ALARM, 100);
-        toneG.startTone(ToneGenerator.TONE_CDMA_ALERT_CALL_GUARD, 200);
+    public void playSoundTurn(){
+        if(sonTour){
+            ToneGenerator toneG = new ToneGenerator(AudioManager.STREAM_ALARM, 100);
+            toneG.startTone(ToneGenerator.TONE_CDMA_ALERT_CALL_GUARD, 200);
+        }
     }
 
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -192,14 +184,14 @@ public class MainActivity extends Activity{
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_settings:
-                mettreEnPause();
+                doPause();
                 Intent activitySettings = new Intent(MainActivity.this, Settings.class);
                 startActivity(activitySettings);
 
                 return true;
 
-            case R.id.action_replay1:
-                rejouer();
+            case R.id.action_replay:
+                replay();
                 return true;
 
             default:
@@ -209,7 +201,7 @@ public class MainActivity extends Activity{
 
     public void pause(){
         if(terminated){
-            rejouer();
+            replay();
         }
         else {
             if (!premierTap) {
@@ -217,13 +209,13 @@ public class MainActivity extends Activity{
                     setPauseText(getResources().getString(R.string.pause));
 
                     if (quiJoueApresPause == NOIRS) {
-                        jouerNoirs();
+                        playBlack();
                     } else {
-                        jouerBlancs();
+                        playWhite();
                     }
                 } else {
 
-                    mettreEnPause();
+                    doPause();
                 }
                 paused = !paused;
             }
@@ -235,7 +227,7 @@ public class MainActivity extends Activity{
         pause_resume2.setText(s);
     }
 
-    public void mettreEnPause(){
+    public void doPause(){
         if(!paused && !premierTap){
             setPauseText(getResources().getString(R.string.resume));
             boutonTemps2.setEnabled(false);
@@ -257,20 +249,20 @@ public class MainActivity extends Activity{
         }
     }
 
-    public void rejouer(){
-        terminerPartie();
+    public void replay(){
+        endGame();
         boutonTemps2.setEnabled(true);
         boutonTemps1.setEnabled(true);
         countDownTimer1.displayTime(startTime);
         countDownTimer2.displayTime(startTime);
-        MAJCompteur(nbMove1, move1);
-        MAJCompteur(nbMove2, move2);
+        updateMoves(nbMove1, move1);
+        updateMoves(nbMove2, move2);
         tour.setImageResource(R.drawable.down); // White should start at the beginning so Black should tap the first time
         terminated = false;
         setPauseText(getResources().getString(R.string.pause));
     }
 
-    public void jouerBlancs(){
+    public void playWhite(){
         tour.setImageResource(R.drawable.up);
         quiJoueAvantPause = BLANCS;
 
@@ -293,7 +285,7 @@ public class MainActivity extends Activity{
         boutonTemps1.setEnabled(true);
     }
 
-    public void jouerNoirs(){
+    public void playBlack(){
         tour.setImageResource(R.drawable.down);
         quiJoueAvantPause = NOIRS;
 
@@ -313,7 +305,7 @@ public class MainActivity extends Activity{
         boutonTemps2.setEnabled(true);
     }
 
-    public void MAJCompteur(int nbMove, TextView move){
+    public void updateMoves(int nbMove, TextView move){
         if(nbMove>1) {
             move.setText(nbMove + " "+ getResources().getString(R.string.moves));
         }
@@ -322,7 +314,7 @@ public class MainActivity extends Activity{
         }
     }
 
-    public void terminerPartie(){
+    public void endGame(){
         premierTap = true;
         paused = false;
         boutonTemps2.setEnabled(false);
@@ -343,7 +335,7 @@ public class MainActivity extends Activity{
         terminated = true;
     }
 
-    public void afficherMessageFinPartie(TextView t){
+    public void displayMessagesEndGame(TextView t){
         if(t.equals(temps1)){
             temps1.setText(getResources().getString(R.string.youLose));
             temps1bis.setText(getResources().getString(R.string.heLoses));
@@ -376,7 +368,7 @@ public class MainActivity extends Activity{
         }
     }
 
-    public void dialogueFinPartie(String s){
+    public void dialogEndGame(String s){
         String title = getResources().getString(R.string.endGame)+" : ";
         String message = "";
         if(quiAPerdu==NOIRS){
@@ -416,7 +408,7 @@ public class MainActivity extends Activity{
                 .setPositiveButton(getResources().getString(R.string.yes), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        rejouer();
+                        replay();
                     }
                 })
                 .create()
@@ -446,8 +438,8 @@ public class MainActivity extends Activity{
             }
 
 
-            dialogueFinPartie( (String) getOtherTextView(textview).getText());
-            afficherMessageFinPartie(textview);
+            dialogEndGame( (String) getOtherTextView(textview).getText());
+            displayMessagesEndGame(textview);
 
             if(vibration){
                 Vibrator v = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
@@ -459,7 +451,7 @@ public class MainActivity extends Activity{
                 toneG.startTone(ToneGenerator.TONE_CDMA_EMERGENCY_RINGBACK, 500);
             }
 
-            terminerPartie();
+            endGame();
         }
 
         @Override

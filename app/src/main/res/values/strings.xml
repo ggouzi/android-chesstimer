@@ -39,4 +39,47 @@
     <string name="yes">Yes</string>
     <string name="no">No</string>
 
+    <string-array name="listIncrement">
+        <item>0 sec</item>
+        <item>1 sec</item>
+        <item>2 sec</item>
+        <item>3 sec</item>
+        <item>4 sec</item>
+        <item>5 sec</item>
+        <item>6 sec</item>
+        <item>7 sec</item>
+        <item>8 sec</item>
+        <item>9 sec</item>
+        <item>2. sec</item>
+    </string-array>
+    <string-array name="listTime">
+        <item>1:00 min</item>
+        <item>1:30 min</item>
+        <item>2:00 min</item>
+        <item>2:30 min</item>
+        <item>3:00 min</item>
+        <item>3:30 min</item>
+        <item>4:00 min</item>
+        <item>4:30 min</item>
+        <item>5:00 min</item>
+        <item>5:30 min</item>
+        <item>6:00 min</item>
+        <item>6:30 min</item>
+        <item>7:00 min</item>
+        <item>7:30 min</item>
+        <item>8:00 min</item>
+        <item>8:30 min</item>
+        <item>9:00 min</item>
+        <item>9:30 min</item>
+        <item>10:00 min</item>
+        <item>11:00 min</item>
+        <item>12:00 min</item>
+        <item>13:00 min</item>
+        <item>14:00 min</item>
+        <item>15:00 min</item>
+        <item>20:00 min</item>
+        <item>30:00 min</item>
+        <item>1:00 h</item>
+    </string-array>
+
 </resources>
