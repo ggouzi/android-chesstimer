@@ -12,10 +12,10 @@
     <string name="pause">Pause</string>
     <string name="replay">Rejouer</string>
     <string name="resume">Reprendre</string>
-    <string name="soundFinal">Bip à la fin de la partie</string>
-    <string name="soundTurn">Bip à la fin de chaque tour</string>
+    <string name="soundFinal">Bip fin de partie</string>
+    <string name="soundTurn">Bip fin de tour</string>
     <string name="time">Temps</string>
-    <string name="vibration">Vibrer </string>
+    <string name="vibration">Vibrer à la fin</string>
     <string name="youLose">Perdu</string>
     <string name="youWin">Gagné</string>
     <string name="black">Noirs</string>
@@ -28,4 +28,10 @@
     <string name="yes">Oui</string>
     <string name="nbMove">Nb déplacements</string>
     <string name="remainingTime">Temps restant</string>
+    <string name="namePlayer1">Nom du joueur blanc</string>
+    <string name="namePlayer2">Nom du joueur noir</string>
+    <string name="namePlayers">Nom des joueurs</string>
+    <string name="options">Options</string>
+    <string name="timeManager">Gestion du temps</string>
+    <string name="exit">Fermer</string>
 </resources>

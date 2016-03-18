@@ -1,44 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
-    <EditTextPreference android:title="@string/namePlayer1"
-        android:key="username"
-        android:summary="Please provide your username">
-    </EditTextPreference>
 
-    <EditTextPreference android:title="@string/namePlayer2"
-        android:key="username"
-        android:summary="Please provide your username">
-    </EditTextPreference>
+    <PreferenceCategory
+        android:title="@string/namePlayers">
+        <EditTextPreference
+            android:title="@string/namePlayer1"
+            android:key="player1_key"
+            android:defaultValue="Player 1">
+        </EditTextPreference>
 
-    <ListPreference
-        android:title="@string/time"
-        android:summary="5 sec"
-        android:key="downloadType"
-        android:defaultValue="1"
-        android:entries="@array/listTime"
-        android:entryValues="@array/listTime" />
+        <EditTextPreference
+            android:title="@string/namePlayer2"
+            android:key="player2_key"
+            android:defaultValue="Player 2">
+        </EditTextPreference>
+    </PreferenceCategory>
 
-    <ListPreference
-        android:title="@string/increment"
-        android:summary="5 sec"
-        android:key="downloadType"
-        android:defaultValue="1"
-        android:entries="@array/listIncrement"
-        android:entryValues="@array/listIncrement" />
+    <PreferenceCategory
+        android:title="@string/timeManager">
+        <ListPreference
+            android:title="@string/time"
+            android:key="time_key"
+            android:entries="@array/listTimeFront"
+            android:entryValues="@array/listTimeBack"
+            android:defaultValue="5" />
 
-    <CheckBoxPreference android:title="@string/soundTurn"
-        android:defaultValue="true"
-        android:summary="ion to check for latest versions."
-        android:key="applicationUpdates" />
+        <ListPreference
+            android:title="@string/increment"
+            android:key="increment_key"
+            android:entries="@array/listIncrementFront"
+            android:entryValues="@array/listIncrementBack"
+            android:defaultValue="2" />
+    </PreferenceCategory>
 
-    <CheckBoxPreference android:title="@string/soundFinal"
-        android:defaultValue="true"
-        android:summary="ion to check for latest versions."
-        android:key="applicationUpdates" />
+    <PreferenceCategory
+        android:title="@string/options">
+        <CheckBoxPreference
+            android:title="@string/soundTurn"
+            android:defaultValue="true"
+            android:key="beepTurn_key" />
 
-    <CheckBoxPreference android:title="@string/vibration"
-        android:defaultValue="true"
-        android:summary="ion to check for latest versions."
-        android:key="applicationUpdates" />
+        <CheckBoxPreference
+            android:title="@string/soundFinal"
+            android:defaultValue="true"
+            android:key="beepFinish_key" />
+
+        <CheckBoxPreference
+            android:title="@string/vibration"
+            android:defaultValue="true"
+            android:key="vibrateFinish_key" />
+
+    </PreferenceCategory>
 
 </PreferenceScreen>

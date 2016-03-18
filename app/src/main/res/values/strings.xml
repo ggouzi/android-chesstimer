@@ -9,6 +9,7 @@
     <string name="pause">Pause</string>
     <string name="resume">Resume</string>
     <string name="replay">Replay</string>
+    <string name="exit">Quit</string>
 
     <string name="move">move</string>
     <string name="moves">moves</string>
@@ -21,13 +22,16 @@
     <string name="heWins">He wins</string>
     <string name="heLoses">He loses</string>
 
-    <string name="soundTurn">Enable beep on each turn</string>
-    <string name="soundFinal">Enable beep on finish</string>
+    <string name="soundTurn">Beep on each turn</string>
+    <string name="soundFinal">Beep on finish</string>
     <string name="vibration">Vibrate on finish</string>
 
-    <string name="namePlayer1">Name player 1</string>
-    <string name="namePlayer2">Name player 2</string>
+    <string name="namePlayer1">Name white player</string>
+    <string name="namePlayer2">Name black player</string>
+    <string name="timeManager">Time manager</string>
+    <string name="options">Options</string>
 
+    <string name="namePlayers">Name of the players</string>
     <string name="remainingTime">Remaining Time</string>
     <string name="nbMove">Number of moves</string>
     <string name="black">Black</string>
@@ -39,7 +43,7 @@
     <string name="yes">Yes</string>
     <string name="no">No</string>
 
-    <string-array name="listIncrement">
+    <string-array name="listIncrementFront">
         <item>0 sec</item>
         <item>1 sec</item>
         <item>2 sec</item>
@@ -50,9 +54,22 @@
         <item>7 sec</item>
         <item>8 sec</item>
         <item>9 sec</item>
-        <item>2. sec</item>
+        <item>10 sec</item>
     </string-array>
-    <string-array name="listTime">
+    <string-array name="listIncrementBack">
+        <item>0</item>
+        <item>1000</item>
+        <item>2000</item>
+        <item>3000</item>
+        <item>4000</item>
+        <item>5000</item>
+        <item>6000</item>
+        <item>7000</item>
+        <item>8000</item>
+        <item>9000</item>
+        <item>10000</item>
+    </string-array>
+    <string-array name="listTimeFront">
         <item>1:00 min</item>
         <item>1:30 min</item>
         <item>2:00 min</item>
@@ -79,7 +96,36 @@
         <item>15:00 min</item>
         <item>20:00 min</item>
         <item>30:00 min</item>
-        <item>1:00 h</item>
+        <item>45:00 min</item>
+    </string-array>
+    <string-array name="listTimeBack">
+        <item>60000</item>
+        <item>90000</item>
+        <item>120000</item>
+        <item>150000</item>
+        <item>180000</item>
+        <item>210000</item>
+        <item>240000</item>
+        <item>270000</item>
+        <item>300000</item>
+        <item>330000</item>
+        <item>360000</item>
+        <item>390000</item>
+        <item>420000</item>
+        <item>450000</item>
+        <item>480000</item>
+        <item>510000</item>
+        <item>540000</item>
+        <item>570000</item>
+        <item>600000</item>
+        <item>660000</item>
+        <item>720000</item>
+        <item>780000</item>
+        <item>840000</item>
+        <item>900000</item>
+        <item>1200000</item>
+        <item>2400000</item>
+        <item>2700000</item>
     </string-array>
 
 </resources>

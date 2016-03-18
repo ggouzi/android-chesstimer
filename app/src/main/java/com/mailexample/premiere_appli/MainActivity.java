@@ -4,11 +4,13 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.media.AudioManager;
 import android.media.ToneGenerator;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Vibrator;
+import android.preference.PreferenceManager;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -24,9 +26,9 @@ public class MainActivity extends Activity{
     private boolean timer1isRunning = false;
     private boolean timer2isRunning = false;
     private boolean premierTap = true;
-    private boolean vibration = true;
-    private boolean sonFinPartie = true;
-    private boolean sonTour = true;
+    private boolean vibration;
+    private boolean sonFinPartie;
+    private boolean sonTour;
 
     private String joueur1;
     private String joueur2;
@@ -46,9 +48,9 @@ public class MainActivity extends Activity{
 
     private long timeRemaining1, timeRemaining2;
 
-    private final long startTime = 10000;
-    private final long interval = 100;
-    private final long increment = 2000;
+    private final long interval = 47;
+    private long startTime = 10000;
+    private long increment = 2000;
 
     private final int NOIRS = 0;
     private final int BLANCS = 1;
@@ -61,8 +63,16 @@ public class MainActivity extends Activity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        joueur1 = getResources().getString(R.string.defaultPlayerName1);
-        joueur2 = getResources().getString(R.string.defaultPlayerName2);
+        SharedPreferences SP = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
+        joueur1 = SP.getString("player1_key", "Player 1");
+        joueur2 = SP.getString("player2_key", "Player 2");
+
+        sonTour = SP.getBoolean("beepTurn_key", true);
+        sonFinPartie = SP.getBoolean("beepFinish_key", true);
+        vibration = SP.getBoolean("vibrateFinish_key", true);
+
+        increment = Long.parseLong(SP.getString("increment_key", "1000"));
+        startTime = Long.parseLong(SP.getString("time_key", "300000"));
 
         boutonTemps1 = (View) this.findViewById(R.id.layoutTemps1);
         boutonTemps2 = (View) this.findViewById(R.id.layoutTemps2);
@@ -109,7 +119,7 @@ public class MainActivity extends Activity{
 
         boutonTemps1.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                playSoundTurn();
+                if(sonTour){playSoundTurn();}
                 if(!premierTap){
                     nbMove1++;
                     increment1.startAnimation(AnimationUtils.loadAnimation(MainActivity.this, R.anim.move_blancs));
@@ -126,7 +136,7 @@ public class MainActivity extends Activity{
 
         boutonTemps2.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                playSoundTurn();
+                if(sonTour){playSoundTurn();}
                 if(!premierTap){
                     nbMove2++;
                     increment2.startAnimation(AnimationUtils.loadAnimation(MainActivity.this, R.anim.move_noirs));
@@ -168,11 +178,15 @@ public class MainActivity extends Activity{
         }
     }
 
-    public void playSoundTurn(){
-        if(sonTour){
-            ToneGenerator toneG = new ToneGenerator(AudioManager.STREAM_ALARM, 100);
-            toneG.startTone(ToneGenerator.TONE_CDMA_ALERT_CALL_GUARD, 200);
-        }
+    public long timeStringToLong(String s){
+        String digits = s.replaceAll("[^0-9]", "");
+        String seconds = digits.substring(digits.length()- 2);
+        String minutes = digits.substring(0, digits.length()-2);
+
+        long second = Long.parseLong(seconds)*1000;
+        long minute = Long.parseLong(minutes)*60000;
+
+        return minute+second;
     }
 
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -194,6 +208,11 @@ public class MainActivity extends Activity{
                 replay();
                 return true;
 
+
+            case R.id.action_quit:
+                finish();
+                return true;
+
             default:
                 return super.onOptionsItemSelected(item);
         }
@@ -206,7 +225,7 @@ public class MainActivity extends Activity{
         else {
             if (!premierTap) {
                 if (paused) {
-                    setPauseText(getResources().getString(R.string.pause));
+                    setPauseText(getResources().getString(R.string.pause));/**/
 
                     if (quiJoueApresPause == NOIRS) {
                         playBlack();
@@ -415,6 +434,21 @@ public class MainActivity extends Activity{
                 .show();
     }
 
+    public static void playSoundTurn(){
+        ToneGenerator toneG = new ToneGenerator(AudioManager.STREAM_ALARM, 100);
+        toneG.startTone(ToneGenerator.TONE_CDMA_ALERT_CALL_GUARD, 200);
+    }
+
+    public void vibrate(){
+        Vibrator v = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+        v.vibrate(500);
+    }
+
+    public static void playSoundEndGame(){
+        ToneGenerator toneG = new ToneGenerator(AudioManager.STREAM_ALARM, 100);
+        toneG.startTone(ToneGenerator.TONE_CDMA_EMERGENCY_RINGBACK, 500);
+    }
+
     // CountDownTimer class
     public class MalibuCountDownTimer extends CountDownTimer {
 
@@ -442,13 +476,11 @@ public class MainActivity extends Activity{
             displayMessagesEndGame(textview);
 
             if(vibration){
-                Vibrator v = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
-                v.vibrate(500);
+                vibrate();
             }
 
             if(sonFinPartie){
-                ToneGenerator toneG = new ToneGenerator(AudioManager.STREAM_ALARM, 100);
-                toneG.startTone(ToneGenerator.TONE_CDMA_EMERGENCY_RINGBACK, 500);
+                playSoundEndGame();
             }
 
             endGame();
