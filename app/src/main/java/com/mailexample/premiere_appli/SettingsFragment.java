@@ -36,7 +36,7 @@ public class SettingsFragment extends PreferenceFragment implements SharedPrefer
         final int DEFAULT_INCREMENT_INDEX = Integer.parseInt(getResources().getString(R.string.defaultIncrementIndex));
 
         for(Map.Entry<String,?> entry : keys.entrySet()){
-            if (entry.getKey().equals(getResources().getString(R.string.time_key))) {
+            /*if (entry.getKey().equals(getResources().getString(R.string.time_key))) {
                 Preference pref = findPreference(entry.getKey());
                 ListPreference listPref = (ListPreference) pref;
                 listPref.setValueIndex(DEFAULT_TIME_INDEX);
@@ -47,10 +47,8 @@ public class SettingsFragment extends PreferenceFragment implements SharedPrefer
                 ListPreference listPref = (ListPreference) pref;
                 listPref.setValueIndex(DEFAULT_INCREMENT_INDEX);
                 pref.setSummary(listPref.getEntry());
-            }
-            else {
-                updateSummary(entry.getKey());
-            }
+            }*/
+            updateSummary(entry.getKey());
         }
     }
 
