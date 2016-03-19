@@ -31,7 +31,7 @@
     <string name="timeManager">Time manager</string>
     <string name="options">Options</string>
 
-    <string name="namePlayers">Name of the players</string>
+    <string name="namePlayers">Names of the players</string>
     <string name="remainingTime">Remaining Time</string>
     <string name="nbMove">Number of moves</string>
     <string name="black">Black</string>
@@ -127,5 +127,15 @@
         <item>2400000</item>
         <item>2700000</item>
     </string-array>
+
+    <string name="increment_key" translatable="false">increment_key</string>
+    <string name="time_key" translatable="false">time_key</string>
+
+    <string name="defaultTimeValue" translatable="false">300000</string>
+    <string name="defaultTimeEntry" translatable="false">5:00 min</string>
+    <string name="defaultTimeIndex" translatable="false">8</string>
+    <string name="defaultIncrementEntry" translatable="false">1 sec</string>
+    <string name="defaultIncrementValue" translatable="false">1000</string>
+    <string name="defaultIncrementIndex" translatable="false">1</string>
 
 </resources>

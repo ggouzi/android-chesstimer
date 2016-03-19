@@ -13,9 +13,10 @@
         android:icon="@drawable/ic_menu_update"
         android:title="@string/replay"
         app:showAsAction="ifRoom"/>
-
+    
     <item android:id="@+id/action_quit"
         android:icon="@drawable/ic_menu_quit"
         android:title="@string/exit"
         app:showAsAction="ifRoom"/>
+
 </menu>

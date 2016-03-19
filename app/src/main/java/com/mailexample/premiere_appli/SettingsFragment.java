@@ -2,12 +2,10 @@ package com.mailexample.premiere_appli;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.preference.CheckBoxPreference;
 import android.preference.EditTextPreference;
 import android.preference.ListPreference;
 import android.preference.Preference;
 import android.preference.PreferenceFragment;
-import android.preference.PreferenceManager;
 
 import java.util.Map;
 
@@ -19,17 +17,29 @@ public class SettingsFragment extends PreferenceFragment implements SharedPrefer
 
         addPreferencesFromResource(R.xml.preferences);
 
-        ListPreference listTime = (ListPreference) findPreference("time_key");
-        listTime.setValueIndex(8); // 5 min
-
-        ListPreference listInc = (ListPreference) findPreference("increment_key");
-        listInc.setValueIndex(2); // 1 sec
-
         SharedPreferences prefs = getPreferenceManager().getSharedPreferences();
         Map<String,?> keys = prefs.getAll();
 
+
+        final int DEFAULT_TIME_INDEX = Integer.parseInt(getResources().getString(R.string.defaultTimeIndex));
+        final int DEFAULT_INCREMENT_INDEX = Integer.parseInt(getResources().getString(R.string.defaultIncrementIndex));
+
         for(Map.Entry<String,?> entry : keys.entrySet()){
-            updateSummary(entry.getKey());
+            if (entry.getKey().equals(getResources().getString(R.string.time_key))) {
+                Preference pref = findPreference(entry.getKey());
+                ListPreference listPref = (ListPreference) pref;
+                listPref.setValueIndex(DEFAULT_TIME_INDEX);
+                pref.setSummary(listPref.getEntry());
+            }
+            else if (entry.getKey().equals(getResources().getString(R.string.increment_key))) {
+                Preference pref = findPreference(entry.getKey());
+                ListPreference listPref = (ListPreference) pref;
+                listPref.setValueIndex(DEFAULT_INCREMENT_INDEX);
+                pref.setSummary(listPref.getEntry());
+            }
+            else {
+                updateSummary(entry.getKey());
+            }
         }
     }
 

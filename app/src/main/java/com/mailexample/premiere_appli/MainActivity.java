@@ -71,8 +71,13 @@ public class MainActivity extends Activity{
         sonFinPartie = SP.getBoolean("beepFinish_key", true);
         vibration = SP.getBoolean("vibrateFinish_key", true);
 
-        increment = Long.parseLong(SP.getString("increment_key", "1000"));
-        startTime = Long.parseLong(SP.getString("time_key", "300000"));
+        String timeKey = getResources().getString(R.string.time_key);
+        String incrementKey = getResources().getString(R.string.increment_key);
+        String defaultIncrementValue = getResources().getString(R.string.defaultIncrementValue);
+        String defaultTimeValue = getResources().getString(R.string.defaultTimeValue);
+
+        increment = Long.parseLong(SP.getString(incrementKey, defaultIncrementValue));
+        startTime = Long.parseLong(SP.getString(timeKey, defaultTimeValue));
 
         boutonTemps1 = (View) this.findViewById(R.id.layoutTemps1);
         boutonTemps2 = (View) this.findViewById(R.id.layoutTemps2);
@@ -207,7 +212,6 @@ public class MainActivity extends Activity{
             case R.id.action_replay:
                 replay();
                 return true;
-
 
             case R.id.action_quit:
                 finish();

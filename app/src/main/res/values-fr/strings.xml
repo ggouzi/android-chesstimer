@@ -30,8 +30,8 @@
     <string name="remainingTime">Temps restant</string>
     <string name="namePlayer1">Nom du joueur blanc</string>
     <string name="namePlayer2">Nom du joueur noir</string>
-    <string name="namePlayers">Nom des joueurs</string>
+    <string name="namePlayers">Noms des joueurs</string>
     <string name="options">Options</string>
     <string name="timeManager">Gestion du temps</string>
-    <string name="exit">Fermer</string>
+    <string name="exit">Quitter</string>
 </resources>
