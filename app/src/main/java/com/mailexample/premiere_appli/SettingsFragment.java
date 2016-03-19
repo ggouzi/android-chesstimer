@@ -9,6 +9,17 @@ import android.preference.PreferenceFragment;
 
 import java.util.Map;
 
+/**
+ * Activity for loading preferences
+ *
+ * This activity is called by Settings.java
+ *
+ * @author Gaetan GOUZI
+ * @version 1.0
+ * @since 1.0
+ * 03/2016
+ */
+
 public class SettingsFragment extends PreferenceFragment implements SharedPreferences.OnSharedPreferenceChangeListener {
 
     @Override

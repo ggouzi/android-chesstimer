@@ -19,6 +19,17 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+/**
+ * Activity for loading chessTimer
+ *
+ * This activity is used to display timers, buttons...
+ *
+ * @author Gaetan GOUZI
+ * @version 1.0
+ * @since 1.0
+ * 03/2016
+ */
+
 public class MainActivity extends Activity{
 
     private MalibuCountDownTimer countDownTimer1, countDownTimer2;
@@ -48,12 +59,14 @@ public class MainActivity extends Activity{
 
     private long timeRemaining1, timeRemaining2;
 
-    private final long interval = 47;
     private long startTime = 10000;
     private long increment = 2000;
-
+/**/
+    private final long interval = 47;
     private final int NOIRS = 0;
     private final int BLANCS = 1;
+    private final int VIBRATION_MILLIS = 500;
+
     private int quiJoueApresPause = NOIRS;
     private int quiJoueAvantPause = BLANCS;
     private int quiAPerdu = NOIRS; // By default
@@ -158,6 +171,9 @@ public class MainActivity extends Activity{
         });
     }
 
+    /**
+     * Method that remove Player name and increment TextViews if their value is null
+     */
     public void displayOrGone(){
         if(increment==0){
             increment1.setVisibility(View.GONE);
@@ -181,17 +197,6 @@ public class MainActivity extends Activity{
         else{
             nomJoueur2.setText(joueur2);
         }
-    }
-
-    public long timeStringToLong(String s){
-        String digits = s.replaceAll("[^0-9]", "");
-        String seconds = digits.substring(digits.length()- 2);
-        String minutes = digits.substring(0, digits.length()-2);
-
-        long second = Long.parseLong(seconds)*1000;
-        long minute = Long.parseLong(minutes)*60000;
-
-        return minute+second;
     }
 
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -222,6 +227,11 @@ public class MainActivity extends Activity{
         }
     }
 
+    /**
+     * Method called when the use wants to pause the timer
+     * It will check if the game is already running or if it is already paused
+     * Then it will pause both timers ans change both pause button text
+     */
     public void pause(){
         if(terminated){
             replay();
@@ -229,7 +239,7 @@ public class MainActivity extends Activity{
         else {
             if (!premierTap) {
                 if (paused) {
-                    setPauseText(getResources().getString(R.string.pause));/**/
+                    setPauseText(getResources().getString(R.string.pause));
 
                     if (quiJoueApresPause == NOIRS) {
                         playBlack();
@@ -245,11 +255,22 @@ public class MainActivity extends Activity{
         }
     }
 
+    /**
+     * Method to change the current text on both pause button
+     *
+     * @param s String to display on the buttons
+     */
     public void setPauseText(String s){
         pause_resume1.setText(s);
         pause_resume2.setText(s);
     }
 
+    /**
+     * Method to pause timers
+     * It will save which player is playing now
+     * and values of both timers
+     * It will cancel timers and create others timers with these values on replay
+     */
     public void doPause(){
         if(!paused && !premierTap){
             setPauseText(getResources().getString(R.string.resume));
@@ -328,6 +349,11 @@ public class MainActivity extends Activity{
         boutonTemps2.setEnabled(true);
     }
 
+    /**
+     * Method to update TextViews representing the number of moves.
+     * @param nbMove The number of moves to display
+     * @param move The TextView to display the number of moves
+     */
     public void updateMoves(int nbMove, TextView move){
         if(nbMove>1) {
             move.setText(nbMove + " "+ getResources().getString(R.string.moves));
@@ -438,17 +464,27 @@ public class MainActivity extends Activity{
                 .show();
     }
 
-    public static void playSoundTurn(){
+    /**
+     * Method to play a sound. This method will be called at the end each turn
+     */
+    public void playSoundTurn(){
         ToneGenerator toneG = new ToneGenerator(AudioManager.STREAM_ALARM, 100);
         toneG.startTone(ToneGenerator.TONE_CDMA_ALERT_CALL_GUARD, 200);
     }
 
-    public void vibrate(){
+    /**
+     * Method to do a vibration
+     * @param millis The duration of vibration in milliseconds
+     */
+    public void vibrate(int millis){
         Vibrator v = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
-        v.vibrate(500);
+        v.vibrate(millis);
     }
 
-    public static void playSoundEndGame(){
+    /**
+     * Method to play a sound. This method will be called at the end of the game
+     */
+    public void playSoundEndGame(){
         ToneGenerator toneG = new ToneGenerator(AudioManager.STREAM_ALARM, 100);
         toneG.startTone(ToneGenerator.TONE_CDMA_EMERGENCY_RINGBACK, 500);
     }
@@ -480,7 +516,7 @@ public class MainActivity extends Activity{
             displayMessagesEndGame(textview);
 
             if(vibration){
-                vibrate();
+                vibrate(VIBRATION_MILLIS);
             }
 
             if(sonFinPartie){

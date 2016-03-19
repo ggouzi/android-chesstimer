@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Chess Timer</string>
+    <string name="black">Nero</string>
+    <string name="white">Bianco</string>
+    <string name="defaultPlayerName1">Giocatore 1</string>
+    <string name="defaultPlayerName2">Giocatore 2</string>
+    <string name="endGame">Fine del gioco</string>
+    <string name="exit">Uscita</string>
+    <string name="no">No</string>
+    <string name="yes">Si</string>
+    <string name="pause">Pausa</string>
+    <string name="increment">Incremento</string>
+    <string name="options">Opzioni</string>
+    <string name="remainingTime">Tempo rimanente</string>
+    <string name="replay">Ricominciare</string>
+    <string name="resume">Riprendere</string>
+    <string name="time">Tempo</string>
+</resources>

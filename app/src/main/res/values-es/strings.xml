@@ -6,7 +6,7 @@
     <string name="defaultPlayerName2">Jugador 2</string>
     <string name="heLoses">Ha perdido</string>
     <string name="heWins">Ha ganado</string>
-    <string name="increment">Incrémento</string>
+    <string name="increment">Incremento</string>
     <string name="move">movimiento</string>
     <string name="moves">movimientos</string>
     <string name="pause">Pausa</string>
