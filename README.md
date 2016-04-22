@@ -21,5 +21,5 @@ Designed to help players:
 Supported Languages:
   - English (En)
   - French (Fr)
-  - Spanish(Es) not completed yet
-  - Italian (It) not completed yet
+  - Spanish(Es)
+  - Italian (It)
