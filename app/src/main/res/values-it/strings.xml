@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Chess Timer</string>
-    <string name="black">Nero</string>
-    <string name="white">Bianco</string>
+    <string name="black">Neri</string>
+    <string name="white">Bianci</string>
     <string name="defaultPlayerName1">Giocatore 1</string>
     <string name="defaultPlayerName2">Giocatore 2</string>
     <string name="endGame">Fine del gioco</string>
@@ -16,4 +16,22 @@
     <string name="replay">Ricominciare</string>
     <string name="resume">Riprendere</string>
     <string name="time">Tempo</string>
+    <string name="action_settings"> Impostazioni</string>
+    <string name="heLoses">Ha perso</string>
+    <string name="heWins">Ha vinto</string>
+    <string name="lost">perdono</string>
+    <string name="move">movimento</string>
+    <string name="moves">movimenti</string>
+    <string name="namePlayer1">Nome del giocatore bianco</string>
+    <string name="namePlayer2">Nome del giocatore nero</string>
+    <string name="namePlayers">Nomi dei giocatori</string>
+    <string name="nbMove">Movimienti</string>
+    <string name="soundFinal">Bip fine gioco</string>
+    <string name="soundTurn">Bip fine giro</string>
+    <string name="timeManager">Gestione del tempo</string>
+    <string name="vibration">Vibrare alla fine</string>
+    <string name="whatToDo">Desidera riprodurre ?</string>
+    <string name="won">Guadagnano</string>
+    <string name="youLose">Perduto</string>
+    <string name="youWin">Vinto</string>
 </resources>

@@ -31,23 +31,7 @@ public class SettingsFragment extends PreferenceFragment implements SharedPrefer
         SharedPreferences prefs = getPreferenceManager().getSharedPreferences();
         Map<String,?> keys = prefs.getAll();
 
-
-        final int DEFAULT_TIME_INDEX = Integer.parseInt(getResources().getString(R.string.defaultTimeIndex));
-        final int DEFAULT_INCREMENT_INDEX = Integer.parseInt(getResources().getString(R.string.defaultIncrementIndex));
-
         for(Map.Entry<String,?> entry : keys.entrySet()){
-            /*if (entry.getKey().equals(getResources().getString(R.string.time_key))) {
-                Preference pref = findPreference(entry.getKey());
-                ListPreference listPref = (ListPreference) pref;
-                listPref.setValueIndex(DEFAULT_TIME_INDEX);
-                pref.setSummary(listPref.getEntry());
-            }
-            else if (entry.getKey().equals(getResources().getString(R.string.increment_key))) {
-                Preference pref = findPreference(entry.getKey());
-                ListPreference listPref = (ListPreference) pref;
-                listPref.setValueIndex(DEFAULT_INCREMENT_INDEX);
-                pref.setSummary(listPref.getEntry());
-            }*/
             updateSummary(entry.getKey());
         }
     }
@@ -70,6 +54,10 @@ public class SettingsFragment extends PreferenceFragment implements SharedPrefer
         super.onPause();
     }
 
+    /**
+     * Method to update summary of a preference
+     * @param key String representing the key of a preference
+     */
     public void updateSummary(String key){
         Preference pref = findPreference(key);
 

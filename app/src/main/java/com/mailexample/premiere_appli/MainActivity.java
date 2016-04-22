@@ -25,7 +25,7 @@ import android.widget.TextView;
  * This activity is used to display timers, buttons...
  *
  * @author Gaetan GOUZI
- * @version 1.0
+ * @version 1.1
  * @since 1.0
  * 03/2016
  */
@@ -61,7 +61,7 @@ public class MainActivity extends Activity{
 
     private long startTime = 10000;
     private long increment = 2000;
-/**/
+
     private final long interval = 47;
     private final int NOIRS = 0;
     private final int BLANCS = 1;
@@ -199,6 +199,11 @@ public class MainActivity extends Activity{
         }
     }
 
+    /**
+     * Method to create the menu which will be displayed on the action bar
+     * @param menu The menu to be displayed
+     * @return true
+     */
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu, menu);
         return true;
@@ -293,6 +298,9 @@ public class MainActivity extends Activity{
         }
     }
 
+    /**
+     * Method to reset timers, buttons and TextViews and start a new game
+     */
     public void replay(){
         endGame();
         boutonTemps2.setEnabled(true);
@@ -306,6 +314,9 @@ public class MainActivity extends Activity{
         setPauseText(getResources().getString(R.string.pause));
     }
 
+    /**
+     * Method to start the timer of the white player
+     */
     public void playWhite(){
         tour.setImageResource(R.drawable.up);
         quiJoueAvantPause = BLANCS;
@@ -329,6 +340,9 @@ public class MainActivity extends Activity{
         boutonTemps1.setEnabled(true);
     }
 
+    /**
+     * Method to start the timer of the black player
+     */
     public void playBlack(){
         tour.setImageResource(R.drawable.down);
         quiJoueAvantPause = NOIRS;
@@ -363,6 +377,9 @@ public class MainActivity extends Activity{
         }
     }
 
+    /**
+     * Method to reset all parameters and called at the end of the game
+     */
     public void endGame(){
         premierTap = true;
         paused = false;
@@ -384,6 +401,10 @@ public class MainActivity extends Activity{
         terminated = true;
     }
 
+    /**
+     * Method to display messages on timer TextViews at the end of the game
+     * @param t TextView representing the timer which stopped first at 00:00:00 (loser player)
+     */
     public void displayMessagesEndGame(TextView t){
         if(t.equals(temps1)){
             temps1.setText(getResources().getString(R.string.youLose));
@@ -399,6 +420,11 @@ public class MainActivity extends Activity{
         }
     }
 
+    /**
+     * Method to get one of the two timer TextView from the other
+     * @param t TextView you have
+     * @return TextView you want
+     */
     public TextView getOtherTextView(TextView t) {
         if (t.equals(temps1)) {
             return temps2;
@@ -408,6 +434,10 @@ public class MainActivity extends Activity{
         }
     }
 
+    /**
+     * Method to get the loser player (black or white)
+     * @return String (Black/White)
+     */
     public String whoLost(){
         if(quiAPerdu==BLANCS){
             return getResources().getString(R.string.white);
@@ -417,7 +447,10 @@ public class MainActivity extends Activity{
         }
     }
 
-    public void dialogEndGame(String s){
+    /**
+     * Method to open a dialog and display stats on both players
+     */
+    public void dialogEndGame(){
         String title = getResources().getString(R.string.endGame)+" : ";
         String message = "";
         if(quiAPerdu==NOIRS){
@@ -512,7 +545,7 @@ public class MainActivity extends Activity{
             }
 
 
-            dialogEndGame( (String) getOtherTextView(textview).getText());
+            dialogEndGame();
             displayMessagesEndGame(textview);
 
             if(vibration){

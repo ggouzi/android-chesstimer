@@ -18,13 +18,14 @@
 
     <PreferenceCategory
         android:title="@string/timeManager">
+
         <ListPreference
-            android:title="@string/time"
-            android:key="@string/time_key"
-            android:entries="@array/listTimeFront"
-            android:entryValues="@array/listTimeBack"
-            android:defaultValue="@string/defaultTimeIndex"
-            android:summary="@string/defaultTimeEntry"/>
+        android:title="@string/time"
+        android:key="@string/time_key"
+        android:entries="@array/listTimeFront"
+        android:entryValues="@array/listTimeBack"
+        android:defaultValue="@string/defaultTimeIndex"
+        android:summary="@string/defaultTimeEntry"/>
 
         <ListPreference
             android:title="@string/increment"
